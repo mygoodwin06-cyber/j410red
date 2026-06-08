@@ -1,0 +1,690 @@
+/* ============================================
+   TYPOGRAPHY & COLOR PALETTE
+   Change these values to customize your entire story
+   ============================================ */
+
+:root {
+    --primary-font: 'Merriweather', Georgia, serif;
+    --heading-font: 'Montserrat', Arial, sans-serif;
+    --primary-color: #061522;
+    --secondary-color: #555;
+    --accent-color: #1f4e79;
+    --background-color: #fff;
+    --border-color: #ddd;
+    --spacing-unit: 16px;
+}
+
+/* ============================================
+   GLOBAL STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--primary-font);
+    color: var(--primary-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+    padding-top: 60px;
+}
+
+/* ============================================
+   NAVIGATION BAR
+   Fixed header that stays at top when scrolling
+   ============================================ */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(6, 21, 34, 0.95);
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #d9ecfb;
+    font-size: 1.25em;
+    font-weight: bold;
+    font-family: var(--heading-font);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.logo img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing-unit);
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* ============================================
+   HAMBURGER MENU (Mobile Only)
+   Shows on screens smaller than 768px
+   ============================================ */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* ============================================
+   HERO SECTION
+   Full-screen background image with headline overlay
+   - TO CHANGE THE BACKGROUND IMAGE: update the
+     background-image URL below
+   ============================================ */
+
+.hero {
+    min-height: 100vh;
+    background-image: url('Herro.jpg'); /* <-- Change this to your image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-content {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px 60px;
+    max-width: 800px;
+    border-radius: 8px;
+}
+
+h1 {
+    font-family: var(--heading-font);
+    font-size: 2.8em;
+    font-weight: bold;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 16px;
+    text-shadow: 0 4px 18px rgba(6, 21, 34, 0.65);
+}
+
+.deck {
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+}
+
+.byline {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: var(--heading-font);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ============================================
+   PARALLAX DIVIDERS
+   Full-width image strips between sections
+   - TO CHANGE IMAGES: update the background-image
+     URLs in .parallax-1, .parallax-2, .parallax-3
+   - On mobile, the fixed effect is automatically
+     disabled for better performance
+   ============================================ */
+
+.parallax-divider {
+    min-height: 300px;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}
+
+.parallax-video {
+    position: relative;
+    overflow: hidden;
+    background-color: #061522;
+}
+
+.parallax-video video {
+    width: 100%;
+    height: 300px;
+    aspect-ratio: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.parallax-1 {
+    background-image: url('parallax-1.jpg'); /* <-- Change this */
+}
+
+.parallax-2 {
+    background-image: url('parallax-2.jpg'); /* <-- Change this */
+}
+
+.parallax-3 {
+    background-image: url('parallax-3.jpg'); /* <-- Change this */
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   Appears in the bottom-right corner after
+   the user scrolls down 300px
+   ============================================ */
+
+#back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 999;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-family: var(--heading-font);
+    font-size: 0.85em;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+#back-to-top:hover {
+    background-color: var(--accent-color);
+}
+
+/* ============================================
+   CONTENT SECTIONS
+   Shared styles for Photos, Audio, Video sections
+   ============================================ */
+
+.section {
+    padding: 60px var(--spacing-unit);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-family: var(--heading-font);
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 24px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--accent-color);
+    display: inline-block;
+}
+
+.section-intro {
+    color: var(--primary-color);
+    margin: 0 auto 1.4em;
+    max-width: 680px;
+    font-size: 1.1em;
+    line-height: 1.6;
+    font-family: var(--primary-font);
+}
+
+/* ============================================
+   STORY TEXT SECTION
+   ============================================ */
+
+.story-text p {
+    max-width: 680px;
+    margin: 0 auto 1.4em;
+    font-size: 1.1em;
+}
+
+.lede::first-letter {
+    float: left;
+    color: var(--accent-color);
+    font-family: var(--heading-font);
+    font-size: 4.2em;
+    font-weight: 900;
+    line-height: 0.82;
+    margin: 8px 10px 0 0;
+    text-shadow: 2px 2px 0 #d9ecfb;
+}
+
+blockquote {
+    max-width: 680px;
+    margin: 32px auto;
+    padding: 0 24px;
+    border-left: 4px solid var(--accent-color);
+    font-size: 1.3em;
+    font-style: italic;
+    color: var(--secondary-color);
+    line-height: 1.5;
+}
+
+.story-photo {
+    max-width: 381px;
+    margin: 28px auto 1.4em;
+}
+
+.story-photo img {
+    width: 100%;
+    display: block;
+    border: 3px solid var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 10px 22px rgba(31, 78, 121, 0.16);
+}
+
+.story-photo figcaption {
+    margin-top: 8px;
+    color: var(--secondary-color);
+    font-family: var(--heading-font);
+    font-size: 0.82em;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+}
+
+/* Alternate background for every other section */
+.alt-bg {
+    max-width: 100%;
+    background-color: #f5f5f5;
+    padding: 60px calc(50% - 500px + var(--spacing-unit));
+}
+
+/* ============================================
+   PHOTOS / SLIDESHOW
+   ============================================ */
+
+.slideshow {
+    position: relative;
+    width: 82%;
+    margin: 0 auto;
+    background-color: #061522;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(31, 78, 121, 0.18);
+}
+
+.slide {
+    display: none;
+    animation: softFade 0.35s ease;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.caption {
+    background-color: #061522;
+    color: #ccc;
+    font-size: 0.85em;
+    padding: 8px 12px;
+}
+
+.slide-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 12px;
+}
+
+.slide-controls button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 9px 22px;
+    cursor: pointer;
+    font-family: var(--heading-font);
+    font-size: 0.9em;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.slide-controls button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-1px);
+}
+
+.slide-counter {
+    font-family: var(--heading-font);
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    background-color: #f3f7fb;
+    border: 1px solid #d8e4ef;
+    border-radius: 999px;
+    padding: 6px 14px;
+}
+
+.slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.slide-dot {
+    width: 10px;
+    height: 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    background-color: #fff;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.slide-dot:hover,
+.slide-dot.active {
+    background-color: var(--accent-color);
+    transform: scale(1.2);
+}
+
+@keyframes softFade {
+    from {
+        opacity: 0.25;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   AUDIO SECTION
+   Clickable speaker images with GIF/JPG rollover
+   ============================================ */
+
+.audio-board {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+.audio-speaker {
+    text-align: center;
+    flex: 0 1 240px;
+    max-width: 240px;
+}
+
+.rollover {
+    width: 240px;
+    height: 240px;
+    max-width: 100%;
+    cursor: pointer;
+    display: block;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+    box-shadow: 0 10px 22px rgba(31, 78, 121, 0.18);
+}
+
+.audio-label {
+    font-family: var(--heading-font);
+    font-size: 0.9em;
+    font-weight: bold;
+    margin-top: 8px;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.audio-instructions {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85em;
+    color: var(--secondary-color);
+    font-family: var(--heading-font);
+}
+
+/* ============================================
+   VIDEO SECTION
+   ============================================ */
+
+.video-wrapper {
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(31, 78, 121, 0.18);
+}
+
+video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    display: block;
+    background-color: #061522;
+    object-fit: contain;
+}
+
+/* ============================================
+   INFOGRAPHIC (Optional section)
+   ============================================ */
+
+.infographic-wrapper {
+    width: min(100%, 720px);
+    margin: 0 auto;
+    background-color: var(--background-color);
+    border-radius: 8px;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 12px 28px rgba(31, 78, 121, 0.18);
+    padding: 28px;
+}
+
+.timeline-list {
+    list-style: none;
+    display: grid;
+    gap: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.timeline-list li {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+.timeline-number {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border: 3px solid #88a9df;
+    border-radius: 50%;
+    color: var(--accent-color);
+    background-color: #fff;
+    font-family: var(--heading-font);
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+.timeline-list h3 {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: #d9ecfb;
+    color: var(--primary-color);
+    font-family: var(--heading-font);
+    font-size: 0.95em;
+}
+
+.timeline-list p {
+    color: var(--primary-color);
+    font-size: 0.95em;
+    line-height: 1.55;
+}
+
+.timeline-source {
+    margin-top: 18px;
+    text-align: right;
+    color: var(--primary-color);
+    font-family: var(--heading-font);
+    font-size: 0.82em;
+    font-weight: 700;
+}
+
+.infographic-wrapper iframe {
+    width: 100%;
+    border: none;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+footer {
+    background-color: var(--primary-color);
+    color: #ccc;
+    text-align: center;
+    padding: 32px var(--spacing-unit);
+    font-family: var(--heading-font);
+    font-size: 0.85em;
+    line-height: 2;
+}
+
+footer a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE / MOBILE STYLES
+   Screens smaller than 768px
+   ============================================ */
+
+@media (max-width: 768px) {
+
+    body {
+        padding-top: 56px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 56px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(6, 21, 34, 0.97);
+        padding: 12px 0;
+        gap: 0;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links li {
+        width: 100%;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 12px var(--spacing-unit);
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    .hero-content {
+        padding: 28px 24px;
+        margin: 0 16px;
+    }
+
+    .deck {
+        font-size: 1em;
+    }
+
+    .alt-bg {
+        padding: 40px var(--spacing-unit);
+    }
+
+    .slideshow {
+        width: 100%;
+    }
+
+    .infographic-wrapper {
+        padding: 20px;
+    }
+
+    .timeline-list li {
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+    }
+
+    .timeline-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+    }
+
+    .audio-grid {
+        flex-direction: column;
+    }
+
+    /* Parallax fixed effect doesn't work on iOS/Android,
+       so we fall back to a normal background image */
+    .parallax-divider {
+        background-attachment: scroll;
+        min-height: 200px;
+    }
+}

@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R.A. Confidential | Redesign</title>
+  <link rel="icon" type="image/png" href="Logo.png">
+  <style>
+    :root {
+      --ink: #171412;
+      --soft-ink: #312b27;
+      --paper: #f7f1e8;
+      --paper-deep: #eee1d1;
+      --white: #fffdf8;
+      --brick: #a7352d;
+      --brick-dark: #6f1e1a;
+      --teal: #226b67;
+      --gold: #c88f2d;
+      --line: rgba(23, 20, 18, 0.16);
+      --shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+    body.nav-open { overflow: hidden; }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button { font: inherit; }
+
+    .progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 80;
+      width: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--brick));
+    }
+
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 70;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 66px;
+      padding: 0 28px;
+      color: var(--white);
+      background: rgba(23, 20, 18, 0.64);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 253, 248, 0.16);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0;
+    }
+    .brand img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      background: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      opacity: 0.82;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus {
+      opacity: 1;
+      color: var(--gold);
+    }
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 253, 248, 0.34);
+      border-radius: 8px;
+      color: var(--white);
+      background: transparent;
+      cursor: pointer;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: 5px auto;
+      background: currentColor;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: end;
+      position: relative;
+      isolation: isolate;
+      color: var(--white);
+      background-image:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.78)),
+        url("Herro.jpg");
+      background-size: cover;
+      background-position: center;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 32vh;
+      z-index: -1;
+      background: linear-gradient(180deg, transparent, var(--paper));
+    }
+    .hero-content {
+      width: min(940px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 120px 0 92px;
+    }
+    .kicker,
+    .section-kicker {
+      margin: 0 0 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      color: var(--gold);
+    }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 {
+      max-width: 820px;
+      margin-bottom: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 4.8rem;
+      line-height: 0.92;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .deck {
+      max-width: 700px;
+      margin-bottom: 18px;
+      font-size: 1.38rem;
+      line-height: 1.45;
+    }
+    .byline {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      color: rgba(255, 253, 248, 0.78);
+    }
+
+    .section { padding: 92px 24px; }
+    .section-inner {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+    }
+    .narrow {
+      width: min(720px, 100%);
+      margin: 0 auto;
+    }
+    .story-lede {
+      font-size: 1.42rem;
+      line-height: 1.58;
+    }
+    .story-text p { font-size: 1.13rem; }
+    .callout {
+      margin: 56px 0;
+      padding: 30px 0 30px 26px;
+      border-left: 6px solid var(--brick);
+      font-size: 1.7rem;
+      line-height: 1.35;
+      color: var(--brick-dark);
+    }
+
+    .full-bleed {
+      min-height: 92vh;
+      display: grid;
+      align-items: center;
+      position: relative;
+      color: var(--white);
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .full-bleed::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.18));
+    }
+    .full-bleed .overlay-copy {
+      position: relative;
+      width: min(560px, calc(100% - 40px));
+      margin-left: max(24px, calc((100vw - 1080px) / 2));
+      padding: 34px 0;
+    }
+    .full-bleed h2 {
+      margin-bottom: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 3rem;
+      line-height: 1.02;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .full-bleed p {
+      font-size: 1.22rem;
+      color: rgba(255, 253, 248, 0.88);
+    }
+    .public-side {
+      background-image:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.1)),
+        url("parallax-1.jpg");
+    }
+
+    .carousel-section {
+      background: var(--white);
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .carousel-heading {
+      width: min(1040px, calc(100% - 48px));
+      margin: 0 auto 34px;
+    }
+    .carousel-heading h2,
+    .audio-intro h2,
+    .timeline h2,
+    .video-section h2 {
+      margin-bottom: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2.4rem;
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .section-intro {
+      max-width: 760px;
+      margin-bottom: 0;
+      font-size: 1.16rem;
+      color: var(--soft-ink);
+    }
+    .carousel-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    .slide-stage {
+      position: relative;
+      overflow: hidden;
+      min-height: 640px;
+      background: var(--ink);
+    }
+    .slide {
+      display: none;
+      min-height: 640px;
+      grid-template-columns: minmax(0, 1fr) 360px;
+    }
+    .slide.active { display: grid; }
+    .slide img {
+      width: 100%;
+      height: 640px;
+      object-fit: cover;
+    }
+    .slide-caption {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 640px;
+      padding: 32px;
+      color: var(--white);
+      background: var(--ink);
+    }
+    .slide-caption p {
+      margin: 0;
+      font-size: 1rem;
+    }
+    .slide-count {
+      margin-bottom: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--gold);
+    }
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-top: 18px;
+    }
+    .arrow-row { display: flex; gap: 10px; }
+    .icon-btn {
+      width: 46px;
+      height: 46px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      background: var(--paper);
+      cursor: pointer;
+    }
+    .icon-btn:hover,
+    .icon-btn:focus {
+      color: var(--white);
+      background: var(--brick);
+      border-color: var(--brick);
+    }
+    .dots {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(23, 20, 18, 0.28);
+      cursor: pointer;
+    }
+    .dot.active { background: var(--brick); }
+
+    .portrait-row {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 42px;
+      align-items: center;
+    }
+    .portrait-row figure { margin: 0; }
+    .portrait-row img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      box-shadow: var(--shadow);
+    }
+    figcaption {
+      margin-top: 12px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--soft-ink);
+    }
+
+    .turning-quote {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 90px 24px;
+      position: relative;
+      overflow: hidden;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.78)),
+        url("parallax-3.jpg") center / cover fixed;
+    }
+    .turning-quote blockquote {
+      width: min(980px, 100%);
+      margin: 0;
+      text-align: center;
+      font-size: 3.2rem;
+      line-height: 1.08;
+    }
+    .turning-quote .split {
+      display: inline-block;
+      color: var(--gold);
+    }
+
+    .audio-section {
+      padding: 100px 24px;
+      color: var(--white);
+      background:
+        linear-gradient(180deg, rgba(23, 20, 18, 0.96), rgba(79, 25, 22, 0.96)),
+        url("story-photo.jpg") center / cover fixed;
+    }
+    .audio-intro {
+      width: min(980px, 100%);
+      margin: 0 auto 42px;
+    }
+    .audio-intro p {
+      max-width: 780px;
+      color: rgba(255, 253, 248, 0.82);
+      font-size: 1.18rem;
+    }
+    .audio-grid {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+    .confession {
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(255, 253, 248, 0.18);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 253, 248, 0.07);
+    }
+    .confession-portrait {
+      height: 220px;
+      background: #000;
+    }
+    .confession-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.25) contrast(1.08);
+    }
+    .confession-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .confession h3 {
+      margin: 0 0 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.15rem;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .confession p {
+      margin-bottom: 22px;
+      color: rgba(255, 253, 248, 0.76);
+      font-size: 0.98rem;
+    }
+    .audio-control {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: auto;
+    }
+    .play-btn {
+      width: 52px;
+      height: 52px;
+      flex: 0 0 52px;
+      display: inline-grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--gold);
+      cursor: pointer;
+    }
+    .play-btn:hover,
+    .play-btn:focus {
+      background: var(--white);
+    }
+    .wave {
+      flex: 1;
+      height: 40px;
+      display: grid;
+      grid-template-columns: repeat(18, 1fr);
+      align-items: center;
+      gap: 3px;
+    }
+    .wave span {
+      display: block;
+      height: 9px;
+      background: rgba(255, 253, 248, 0.32);
+      border-radius: 999px;
+      transition: height 0.2s, background-color 0.2s;
+    }
+    .confession.playing .wave span {
+      background: var(--gold);
+      animation: pulse 0.8s infinite ease-in-out;
+    }
+    .confession.playing .wave span:nth-child(2n) { animation-delay: 0.14s; }
+    .confession.playing .wave span:nth-child(3n) { animation-delay: 0.28s; }
+    @keyframes pulse {
+      0%, 100% { height: 10px; }
+      50% { height: 32px; }
+    }
+    .progress-track {
+      position: relative;
+      height: 6px;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 253, 248, 0.2);
+    }
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--gold);
+    }
+
+    .timeline { background: var(--paper); }
+    .timeline-track {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 34px;
+      padding-bottom: 6px;
+      overflow-x: auto;
+    }
+    .milestone {
+      min-height: 230px;
+      padding: 20px;
+      border-top: 5px solid var(--teal);
+      border-radius: 8px;
+      background: var(--white);
+    }
+    .milestone:nth-child(even) { border-top-color: var(--brick); }
+    .milestone-num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: 16px;
+      border-radius: 50%;
+      color: var(--white);
+      background: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+    .milestone h3 {
+      margin-bottom: 8px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+    .milestone p {
+      margin: 0;
+      font-size: 0.96rem;
+    }
+    .source {
+      margin-top: 16px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.8rem;
+      color: var(--soft-ink);
+    }
+
+    .video-section {
+      color: var(--white);
+      background: var(--ink);
+    }
+    .video-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      gap: 34px;
+      align-items: center;
+    }
+    .video-section .section-intro,
+    .video-section figcaption {
+      color: rgba(255, 253, 248, 0.78);
+    }
+    .video-frame { margin: 0; }
+    .video-frame video {
+      width: 100%;
+      background: #000;
+      box-shadow: var(--shadow);
+    }
+
+    .closing {
+      text-align: center;
+      background: var(--paper-deep);
+    }
+    .closing p {
+      max-width: 680px;
+      margin: 0 auto 18px;
+      font-size: 1.3rem;
+    }
+    footer {
+      padding: 36px 24px;
+      color: var(--white);
+      background: var(--ink);
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.86rem;
+    }
+    footer p { margin: 6px 0; }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      .site-nav { padding: 0 18px; }
+      .menu-toggle { display: block; }
+      .nav-links {
+        position: fixed;
+        top: 66px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 20px 24px 28px;
+        background: rgba(23, 20, 18, 0.98);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 253, 248, 0.14);
+      }
+      .nav-links a {
+        display: block;
+        padding: 14px 0;
+      }
+      h1 { font-size: 3.2rem; }
+      .deck { font-size: 1.14rem; }
+      .full-bleed,
+      .turning-quote,
+      .audio-section { background-attachment: scroll; }
+      .slide,
+      .slide.active,
+      .portrait-row,
+      .audio-grid,
+      .video-layout { grid-template-columns: 1fr; }
+      .slide-stage,
+      .slide,
+      .slide-caption { min-height: 0; }
+      .slide img {
+        height: auto;
+        aspect-ratio: 4 / 3;
+      }
+      .slide-caption { min-height: 260px; }
+      .audio-grid { width: min(560px, 100%); }
+      .turning-quote blockquote { font-size: 2.25rem; }
+    }
+
+    @media (max-width: 620px) {
+      .section { padding: 70px 18px; }
+      .hero-content {
+        width: min(100% - 32px, 940px);
+        padding-bottom: 72px;
+      }
+      h1 { font-size: 2.55rem; }
+      .story-lede { font-size: 1.22rem; }
+      .callout {
+        font-size: 1.32rem;
+        padding-left: 18px;
+      }
+      .full-bleed h2,
+      .carousel-heading h2,
+      .audio-intro h2,
+      .timeline h2,
+      .video-section h2 { font-size: 2rem; }
+      .full-bleed .overlay-copy {
+        width: min(100% - 36px, 560px);
+        margin: 0 auto;
+      }
+      .carousel-heading { width: min(100% - 36px, 1040px); }
+      .carousel-shell { width: min(100% - 24px, 1180px); }
+      .carousel-controls {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .dots { justify-content: flex-start; }
+      .slide-caption { padding: 22px; }
+      .turning-quote blockquote { font-size: 1.8rem; }
+      .confession { min-height: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal,
+      .confession.playing .wave span {
+        animation: none;
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+
+  <nav class="site-nav" aria-label="Story sections">
+    <a class="brand" href="#hero" aria-label="R.A. Confidential home">
+      <img src="Logo.png" alt="">
+      <span>R.A. Confidential</span>
+    </a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#events">Events</a></li>
+      <li><a href="#turn">The Tension</a></li>
+      <li><a href="#confessions">Confessions</a></li>
+      <li><a href="#timeline">Timeline</a></li>
+      <li><a href="#insight">Insight</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero" id="hero">
+      <div class="hero-content reveal">
+        <p class="kicker">Inside Cal Poly residence halls</p>
+        <h1>R.A. Confidential</h1>
+        <p class="deck">Never-before-heard stories from inside residence halls. Discover what it really looks like to live where you work, study, and get called at 3 a.m.</p>
+        <p class="byline">By Maya Goodwin, May 2026</p>
+      </div>
+    </section>
+
+    <section class="section story-text">
+      <div class="narrow reveal">
+        <p class="story-lede">On the outside, the life of a Residential Advisor can look ideal: free housing and food, leadership experience, a single room, and close proximity to classes. In a coastal college town where rent is high, the position has become one of the most wanted jobs at Cal Poly.</p>
+        <p>But once you are on call, the job becomes something very different.</p>
+        <blockquote class="callout">At Cal Poly, one of the campus's most competitive student jobs also comes with some of its most important demands.</blockquote>
+        <p>While students often see the benefits first, many RAs say the emotional and mental strain of the role is what ultimately defines the experience.</p>
+      </div>
+    </section>
+
+    <section class="full-bleed public-side" aria-label="The visible side of RA work">
+      <div class="overlay-copy reveal">
+        <p class="section-kicker">The public side</p>
+        <h2>Community, planned.</h2>
+        <p>Residential advisors are expected to build relationships, organize events and create community inside residence halls that can otherwise feel isolating or chaotic.</p>
+      </div>
+    </section>
+
+    <section class="section carousel-section" id="events">
+      <div class="carousel-heading reveal">
+        <p class="section-kicker">RA Events</p>
+        <h2>The room everyone sees</h2>
+        <p class="section-intro">RA events create community through the chaos of dorm life. These scenes show the visible, social and community-centered part of the job.</p>
+      </div>
+      <div class="carousel-shell reveal">
+        <div class="slide-stage" aria-live="polite"></div>
+        <div class="carousel-controls">
+          <div class="arrow-row">
+            <button class="icon-btn prev-slide" type="button" aria-label="Previous photo" title="Previous photo">&#8592;</button>
+            <button class="icon-btn next-slide" type="button" aria-label="Next photo" title="Next photo">&#8594;</button>
+          </div>
+          <div class="dots" aria-label="Photo carousel navigation"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section story-text">
+      <div class="section-inner portrait-row reveal">
+        <figure>
+          <img src="Lauren.jpg" alt="Lauren Giovanonni, a Cal Poly residential advisor">
+          <figcaption>"I feel like I got really lucky with my residents this year, and that does not always happen," said Lauren Giovannoni. "Being an RA is tough sometimes, but for the most part, it has been fun and rewarding."</figcaption>
+        </figure>
+        <div>
+          <p>The event photos show the side of the job people tend to notice first. From the outside, it can look like most of being a residential advisor is just showing up and creating community.</p>
+          <p>But that is only one half of it.</p>
+          <p>The same role also comes with responsibility that does not stay inside scheduled events or planned hours. RAs are expected to step in when things go wrong, handle policy issues and respond when something in the building shifts from normal to not normal, even if it is the middle of the night.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="turning-quote" id="turn">
+      <blockquote class="reveal">As an RA, you are someone's <span class="split">neighbor</span>, but you are also the person they get <span class="split">written up by.</span></blockquote>
+    </section>
+
+    <section class="audio-section" id="confessions">
+      <div class="audio-intro reveal">
+        <p class="section-kicker">Confessions</p>
+        <h2>The stories RAs do not always hear</h2>
+        <p>These anonymous first-year confessionals tell the stories of the things students got away with in the dorms without their RAs finding out. From chaotic pranks to drunken decisions, the clips capture the side of dorm life that usually stays behind closed doors.</p>
+      </div>
+
+      <div class="audio-grid reveal">
+        <article class="confession" data-still="1.jpg" data-gif="1.gif">
+          <div class="confession-portrait">
+            <img src="1.jpg" alt="Anonymous prankster portrait">
+          </div>
+          <div class="confession-body">
+            <h3>Anonymous Prankster</h3>
+            <p>A private dorm story from the side residents rarely tell the person on duty.</p>
+            <div class="audio-control">
+              <button class="play-btn" type="button" aria-label="Play Anonymous Prankster audio" title="Play">&#9658;</button>
+              <div class="wave" aria-hidden="true"></div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+            <audio preload="metadata" src="1.mp3"></audio>
+          </div>
+        </article>
+
+        <article class="confession" data-still="2.jpg" data-gif="2.gif">
+          <div class="confession-portrait">
+            <img src="2.jpg" alt="Anonymous drinker portrait">
+          </div>
+          <div class="confession-body">
+            <h3>Anonymous Drinker</h3>
+            <p>A confession that turns the hallway into a place of secrets, risks and split-second choices.</p>
+            <div class="audio-control">
+              <button class="play-btn" type="button" aria-label="Play Anonymous Drinker audio" title="Play">&#9658;</button>
+              <div class="wave" aria-hidden="true"></div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+            <audio preload="metadata" src="2.mp3"></audio>
+          </div>
+        </article>
+
+        <article class="confession" data-still="3.jpg" data-gif="3.gif">
+          <div class="confession-portrait">
+            <img src="3.jpg" alt="Anonymous sunbather portrait">
+          </div>
+          <div class="confession-body">
+            <h3>Anonymous Sunbather</h3>
+            <p>A lighter story that still depends on the same tension: who sees what, and who has to report it.</p>
+            <div class="audio-control">
+              <button class="play-btn" type="button" aria-label="Play Anonymous Sunbather audio" title="Play">&#9658;</button>
+              <div class="wave" aria-hidden="true"></div>
+            </div>
+            <div class="progress-track" aria-hidden="true"><div class="progress-fill"></div></div>
+            <audio preload="metadata" src="3.mp3"></audio>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section timeline" id="timeline">
+      <div class="section-inner reveal">
+        <p class="section-kicker">Timeline</p>
+        <h2>How someone becomes the person on call</h2>
+        <p class="section-intro">The path to becoming a Cal Poly residential advisor begins months before students move into their assigned communities.</p>
+        <div class="timeline-track" aria-label="Timeline for becoming a Cal Poly residential advisor"></div>
+        <p class="source">Source: Cal Poly Housing</p>
+      </div>
+    </section>
+
+    <section class="section video-section" id="insight">
+      <div class="section-inner video-layout reveal">
+        <div>
+          <p class="section-kicker">Insight</p>
+          <h2>The former RA perspective</h2>
+          <p class="section-intro">This interview features former Cal Poly RA Fulton Skikos reflecting on the pressure and responsibility that came with the role, along with the feeling that the work often went unrecognized. His perspective shows the emotional toll and unseen challenges residential advisors face.</p>
+        </div>
+        <figure class="video-frame">
+          <video controls preload="metadata" poster="Fulton.png">
+            <source src="Confidential-web.m4v" type="video/mp4">
+            <track src="captions.vtt" kind="captions" srclang="en" label="English" default>
+            Your browser does not support video.
+          </video>
+          <figcaption>Former residential advisor Fulton Skikos reveals his experience as an RA.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <div class="narrow reveal">
+        <p>R.A. Confidential moves between the part of the job residents see and the parts they usually do not. The closer the reader gets to the hidden stories, the more complicated the role becomes.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>R.A. Confidential | By Maya Goodwin | May 2026</p>
+    <p><a href="mailto:mgoodw02@calpoly.edu">mgoodw02@calpoly.edu</a></p>
+    <p>&copy; 2026 Maya Goodwin. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const progress = document.getElementById("progress");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const slideStage = document.querySelector(".slide-stage");
+    const dotsWrap = document.querySelector(".dots");
+    const prevSlide = document.querySelector(".prev-slide");
+    const nextSlide = document.querySelector(".next-slide");
+
+    const photoSlides = [
+      {
+        src: "IMG_4088 2.jpg",
+        alt: "Lauren Giovanonni talking with residents at an Early Earth Day event",
+        caption: "Lauren Giovanonni, a second-year biomedical engineering major and resident advisor for Yosemite Tower 2, talks with residents during an Early Earth Day event she organized on April 16, 2026. On the right, students argue about the rules of the game, accusing each other of cheating and laughing as they try to settle it."
+      },
+      {
+        src: "IMG_4066.jpg",
+        alt: "Fallon Boyle laughs with Fiona Gordon during an Early Earth Day event",
+        caption: "Fallon Boyle, a first-year agricultural communications major, laughs with her neighbor Fiona Gordon, a first-year food science major, during an Early Earth Day event hosted by RA Lauren Giovanonni. Boyle holds up a sheet of nature-themed stickers, turning a treat into a sweet moment of connection between neighbors."
+      },
+      {
+        src: "IMG_4079.jpg",
+        alt: "Jackson Scott and Jack Lindley stand with Brock Muniozguren in the lounge",
+        caption: "Jackson Scott and Jack Lindley, both first-year agricultural systems management majors, stand with Brock Muniozguren, a first-year forest and fire science major, in the lounge. The three laugh about a roommate laundry disaster from earlier in the week, chatting about who broke one of the communal washing machines."
+      },
+      {
+        src: "IMG_4083.jpg",
+        alt: "Early Earth Day organizer Lauren Giovanonni speaking about the event",
+        caption: "I wanted to do something before Earth Day because I am actually on call that night, and a lot of my residents are busy too, said Early Earth Day organizer Lauren Giovanonni. This way people could still come, hang out and do something together without stressing about their schedules."
+      },
+      {
+        src: "IMG_4072.jpg",
+        alt: "Reese Worsdell and Rob Bautista flip through nature-themed cards",
+        caption: "Reese Worsdell, a first-year animal science major, and Rob Bautista, a first-year business major, flip through nature-themed cards while talking about a possible trip to Palm Springs. Residential events like this one provide students with opportunities to converse outside of class."
+      },
+      {
+        src: "IMG_4126.jpg",
+        alt: "Jackson Scott brings out a burnt Chick-fil-A sandwich from the air fryer",
+        caption: "During the event, Jackson Scott brings out the air fryer with a Chick-fil-A sandwich still inside, burnt enough to shrink the plate underneath. I love this, Giovanonni said. It is so dumb, but this is exactly what living here is like. Everyone just kind of joins in."
+      },
+      {
+        src: "IMG_4105.jpg",
+        alt: "Lauren Giovanonni and Fallon Boyle laugh together during an Early Earth Day event",
+        caption: "Lauren Giovanonni, resident advisor for Yosemite Tower 2, laughs with Fallon Boyle over an inside joke the two share, breaking into laughter as Fallon tries to explain it before giving up. The initial confusion from others nearby only makes it funnier, sparking more laughter around the room."
+      },
+      {
+        src: "IMG_4123.jpg",
+        alt: "Brock Muniozguren folds a piece of paper at the Early Earth Day event",
+        caption: "Brock Muniozguren, a first-year forest and fire science major, folds a piece of paper provided at the Early Earth Day event after getting back from class. I had class until 8, so I was pretty done for the day, Muniozguren said. It was nice to come back and have something going on instead of just going straight to my room."
+      },
+      {
+        src: "IMG_3862.jpg",
+        alt: "Fiona Gordon sits with her neighbors during the Early Earth Day event",
+        caption: "First-year food science major Fiona Gordon glances toward the camera while sitting with her neighbors during the Early Earth Day event. The group stays at the table after their game ends, continuing their conversation after the April 16 event technically ends."
+      }
+    ];
+
+    const timelineItems = [
+      ["1", "Eligibility", "Must have a minimum 2.3 GPA and good disciplinary standing."],
+      ["2", "Applying", "Complete the online RA application and answer three written response questions in 350 words or less."],
+      ["3", "Interview Process", "Based on the written application, candidates are called back for two 30-minute interviews in January."],
+      ["4", "Selection & Offer", "In mid-February, applicants are notified of their selection."],
+      ["5", "Training", "If selected, students are assigned mandatory RA training before the Fall Semester."],
+      ["6", "Move Into Housing", "RAs move into their assigned dormitory right before WOW Week."],
+      ["7", "Begin Your Duties", "RAs begin planning future events, nightly safety checks and building community."]
+    ];
+
+    let activeSlide = 0;
+
+    function buildCarousel() {
+      slideStage.innerHTML = photoSlides.map((slide, index) => `
+        <article class="slide${index === 0 ? " active" : ""}">
+          <img src="${slide.src}" alt="${slide.alt}">
+          <div class="slide-caption">
+            <div class="slide-count">${index + 1} / ${photoSlides.length}</div>
+            <p>${slide.caption}</p>
+          </div>
+        </article>
+      `).join("");
+
+      dotsWrap.innerHTML = photoSlides.map((_, index) => `
+        <button class="dot${index === 0 ? " active" : ""}" type="button" aria-label="Show photo ${index + 1}"></button>
+      `).join("");
+
+      document.querySelectorAll(".dot").forEach((dot, index) => {
+        dot.addEventListener("click", () => renderSlide(index));
+      });
+    }
+
+    function buildTimeline() {
+      document.querySelector(".timeline-track").innerHTML = timelineItems.map(([num, title, text]) => `
+        <article class="milestone">
+          <span class="milestone-num">${num}</span>
+          <h3>${title}</h3>
+          <p>${text}</p>
+        </article>
+      `).join("");
+    }
+
+    function renderSlide(index) {
+      const slides = Array.from(document.querySelectorAll(".slide"));
+      activeSlide = (index + slides.length) % slides.length;
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("active", slideIndex === activeSlide);
+      });
+      document.querySelectorAll(".dot").forEach((dot, dotIndex) => {
+        dot.classList.toggle("active", dotIndex === activeSlide);
+        dot.setAttribute("aria-current", dotIndex === activeSlide ? "true" : "false");
+      });
+    }
+
+    function updateProgress() {
+      const scrollTop = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const percent = height > 0 ? (scrollTop / height) * 100 : 0;
+      progress.style.width = percent + "%";
+    }
+
+    function closeNav() {
+      navLinks.classList.remove("open");
+      document.body.classList.remove("nav-open");
+      menuToggle.setAttribute("aria-expanded", "false");
+    }
+
+    buildCarousel();
+    buildTimeline();
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      document.body.classList.toggle("nav-open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+    document.querySelectorAll(".nav-links a").forEach((link) => {
+      link.addEventListener("click", closeNav);
+    });
+    prevSlide.addEventListener("click", () => renderSlide(activeSlide - 1));
+    nextSlide.addEventListener("click", () => renderSlide(activeSlide + 1));
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+    document.querySelectorAll(".wave").forEach((wave) => {
+      wave.innerHTML = "<span></span>".repeat(18);
+    });
+
+    const confessions = Array.from(document.querySelectorAll(".confession"));
+
+    function setConfessionState(confession, isPlaying) {
+      const button = confession.querySelector(".play-btn");
+      const image = confession.querySelector(".confession-portrait img");
+      confession.classList.toggle("playing", isPlaying);
+      button.innerHTML = isPlaying ? "&#10074;&#10074;" : "&#9658;";
+      button.title = isPlaying ? "Pause" : "Play";
+      button.setAttribute("aria-label", (isPlaying ? "Pause " : "Play ") + confession.querySelector("h3").textContent + " audio");
+      image.src = isPlaying ? confession.dataset.gif : confession.dataset.still;
+    }
+
+    confessions.forEach((confession) => {
+      const audio = confession.querySelector("audio");
+      const button = confession.querySelector(".play-btn");
+      const fill = confession.querySelector(".progress-fill");
+      const image = confession.querySelector(".confession-portrait img");
+
+      button.addEventListener("click", () => {
+        if (audio.paused) {
+          confessions.forEach((other) => {
+            const otherAudio = other.querySelector("audio");
+            if (otherAudio !== audio) {
+              otherAudio.pause();
+              setConfessionState(other, false);
+            }
+          });
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener("play", () => setConfessionState(confession, true));
+      audio.addEventListener("pause", () => setConfessionState(confession, false));
+      audio.addEventListener("ended", () => {
+        setConfessionState(confession, false);
+        fill.style.width = "0%";
+      });
+      audio.addEventListener("timeupdate", () => {
+        const percent = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+        fill.style.width = percent + "%";
+      });
+      image.addEventListener("mouseenter", () => {
+        if (audio.paused) image.src = confession.dataset.gif;
+      });
+      image.addEventListener("mouseleave", () => {
+        if (audio.paused) image.src = confession.dataset.still;
+      });
+    });
+
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+    updateProgress();
+  </script>
+</body>
+</html>

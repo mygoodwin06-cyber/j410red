@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R.A. CONFIDENTIAL</title>
+    <link rel="icon" type="image/png" href="Logo.png">
+
+    <!-- ============================================
+         GOOGLE FONTS
+         - To change fonts, visit fonts.google.com
+         - Replace the font names in the URL and in style.css
+         ============================================ -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Merriweather:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ============================================
+         NAVIGATION: Fixed header with mobile toggle
+         - Change the nav links to match your story sections f
+         - The hamburger menu appears on screens under 768px
+         ============================================ -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span>R.A. Confidential</span>
+                <img src="Logo.png" alt="R.A. Confidential logo">
+            </div>
+            <button class="hamburger" onclick="toggleNav()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#photos">RA Events</a></li>
+                <li><a href="#audio">Confessions</a></li>
+                <li><a href="#infographic">Timeline</a></li>
+                <li><a href="#video">Insight</a></li>
+                <li><a href="#footer">Credits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO SECTION: Full-screen image + headline
+         - Change the background image in style.css
+         - Look for ".hero" in the CSS file
+         - Edit the headline and deck text below
+         ============================================ -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>R.A. CONFIDENTIAL</h1>
+            <p class="deck">Never-before-heard stories from inside residence halls. Discover what it really looks like to live where you work, study, and get called at 3 a.m.</p>
+            <p class="byline">By Maya Godwin, May 2026</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         STORY TEXT SECTION
+         - Write your full story here
+         - Use multiple <p> tags for multiple paragraphs
+         ============================================ -->
+    <section class="section story-text">
+        <p class="lede">On the outside, the life of a Residential Advisor can look ideal: free housing and food, leadership experience, a single room, and close proximity to classes. In a coastal college town where rent is high, the position has become one of the most wanted jobs at Cal Poly.</p>
+        <p>But once you’re on call, the job becomes something very different.</p>
+        <blockquote>At Cal Poly, one of the campus’s most competitive student jobs also comes with some of its most important demands.</blockquote>
+        <p>While students often see the benefits first, many RAs say the emotional and mental strain of the role is what ultimately defines the experience.</p>
+        <p>Still, much of the job happens in quieter moments. Residential advisors are expected to build relationships, organize events and create community inside residence halls that can otherwise feel isolating or chaotic. The photos below capture the side of the role most students recognize first: the visible, social and community-centered part of being an RA.</p>
+    </section>
+
+    <!-- ============================================
+         PARALLAX DIVIDER
+         - Change the background image in style.css
+         - Look for ".parallax-1"
+         ============================================ -->
+    <div class="parallax-divider parallax-1"></div>
+
+    <!-- ============================================
+         PHOTOS SECTION: Slideshow gallery
+         - Add/remove <div class="slide"> blocks for each photo
+         - Update the img src and alt text for each photo
+         - The caption text appears below each photo
+         ============================================ -->
+    <section id="photos" class="section">
+        <h2>RA Events</h2>
+        <p class="section-intro">RA events create community through the chaos of dorm life.</p>
+        <div class="slideshow">
+            <div class="slide active">
+                <img src="IMG_4088 2.jpg" alt="Lauren Giovanonni talking with residents at an Early Earth Day event">
+                <p class="caption">Lauren Giovanonni, a second-year biomedical engineering major and resident advisor for Yosemite Tower 2, talks with residents during an ‘Early Earth Day’ event she organized on April 16, 2026. On the right, students argue about the rules of the game, accusing each other of cheating and laughing as they try to settle it.</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4066.jpg" alt="Fallon Boyle laughs with neighbor Fiona Gordon during an Early Earth Day event">
+                <p class="caption">Fallon Boyle, a first-year agricultural communications major, laughs with her neighbor Fiona Gordon, a first-year food science major, during an ‘Early Earth Day’ event hosted by RA Lauren Giovanonni. Boyle holds up a sheet of nature-themed stickers, turning a treat into a sweet moment of connection between neighbors.</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4079.jpg" alt="Jackson Scott and Jack Lindley stand with Brock Muniozguren in the lounge">
+                <p class="caption">Jackson Scott and Jack Lindley, both first-year agricultural systems management majors, stand with Brock Muniozguren, a first-year forest and fire science major, in the lounge. The three laugh about a roommate laundry disaster from earlier in the week, chatting about who broke one of the communal washing machines.</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4083.jpg" alt="Early Earth Day organizer Lauren Giovanonni speaking about the event">
+                <p class="caption">“I wanted to do something before Earth Day because I’m actually on call that night, and a lot of my residents are busy too,” said 'Early Earth Day' organizer Lauren Giovanonni. “This way people could still come, hang out and do something together without stressing about their schedules.”</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4072.jpg" alt="Reese Worsdell and Rob Bautista flip through nature-themed cards while talking about a trip">
+                <p class="caption">Reese Worsdell, a first-year animal science major, and Rob Bautista, a first-year business major, flip through nature-themed cards while talking about a possible trip to Palm Springs. Residential events like this one provide students with opportunities to converse outside of class.</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4126.jpg" alt="Jackson Scott brings out a burnt Chick-fil-A sandwich from the air fryer">
+                <p class="caption">During the event, Jackson Scott brings out the air fryer with a Chick-fil-A sandwich still inside, burnt enough to shrink the plate underneath. Fallon Boyle and Lauren Giovanonni laugh while Reese Worsdell, a first-year animal science major, and Fiona Gordon take photos. “I love this,” Giovanonni said. “It’s so dumb, but this is exactly what living here is like. Everyone just kind of joins in.”</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4105.jpg" alt="Lauren Giovanonni and Fallon Boyle laugh together over an inside joke during an Early Earth Day event">
+                <p class="caption">Lauren Giovanonni, resident advisor for Yosemite Tower 2, laughs with Fallon Boyle over an inside joke the two share, breaking into laughter as Fallon tries to explain it before giving up. The initial confusion from others nearby only makes it funnier, sparking more laughter around the room.</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_4123.jpg" alt="Brock Muniozguren folds a piece of paper at the Early Earth Day event">
+                <p class="caption">Brock Muniozguren, a first-year forest and fire science major, folds a piece of paper provided at the ‘Early Earth Day’ event after getting back from class. “I had class until 8, so I was pretty done for the day,” Muniozguren said. “It was nice to come back and have something going on instead of just going straight to my room.”</p>
+            </div>
+            <div class="slide">
+                <img src="IMG_3862.jpg" alt="Fiona Gordon sits with her neighbors during the Early Earth Day event">
+                <p class="caption">First year food science major Fiona Gordon glances toward the camera while sitting with her neighbors during the 'Early Earth Day' event. The group stays at the table after their game ends, continuing their conversation after the April 16 event technically ends.</p>
+            </div>
+        </div>
+        <div class="slide-controls">
+            <button onclick="changeSlide(-1)">&#8592; Prev</button>
+            <span class="slide-counter">
+                <span id="current-slide">1</span> / <span id="total-slides">9</span>
+            </span>
+            <button onclick="changeSlide(1)">Next &#8594;</button>
+        </div>
+        <div class="slide-dots" aria-label="Photo slideshow navigation"></div>
+    </section>
+
+    <section class="section story-text">
+        <p>The event photos show the side of the job people tend to notice first. From the outside, it can look like most of being a residential advisor is just showing up and creating community.</p>
+        <p></p>
+        <p>But that is only one half of it.</p>
+        <figure class="story-photo">
+            <img src="Lauren.jpg" alt="Lauren Giovanonni, a Cal Poly residential advisor">
+            <figcaption>“I feel like I got really lucky with my residents this year, and that doesn’t always happen,” said Lauren Giovannoni. “Being an RA is tough sometimes, but for the most part, it’s been fun and rewarding.”</figcaption>
+        </figure>
+        <p>The same role also comes with responsibility that does not stay inside scheduled events or planned hours. RAs are expected to step in when things go wrong, handle policy issues, and respond when something in the building shifts from normal to not normal, even if it is the middle of the night.</p>
+        <p>That's where things start to get complicated. As an RA, you are someone’s neighbor, but you are also the person they get written up by.</p>
+    </section>
+
+    <!-- ============================================
+         PARALLAX DIVIDER
+         - Change the background image in style.css
+         - Look for ".parallax-2"
+         ============================================ -->
+    <div class="parallax-divider parallax-2"></div>
+
+    <!-- ============================================
+         AUDIO SECTION: Clickable speaker images
+         - For each speaker you need TWO image files:
+             img/rollover/1.gif  (animated, shown by default)
+             img/rollover/1.jpg  (still, shown on hover)
+         - Update the audio src to your mp3 files
+         - Update the alt text and label to the speaker's name
+         - Click image to play | Double-click to pause
+         - Only one clip will play at a time
+         ============================================ -->
+    <section id="audio" class="section alt-bg">
+        <h2>Confessions</h2>
+        <p class="section-intro">These anonymous first-year confessionals tell the stories of the things students got away with in the dorms without their RAs finding out. From chaotic pranks to drunken decisions, the clips capture the side of dorm life that usually stays behind closed doors.</p>
+
+        <!-- Hidden audio elements — triggered by clicking the images below -->
+        <audio id="audio_1"><source src="1.mp3" type="audio/mpeg"></audio>
+        <audio id="audio_2"><source src="2.mp3" type="audio/mpeg"></audio>
+        <audio id="audio_3"><source src="3.mp3" type="audio/mpeg"></audio>
+
+        <div class="audio-board">
+            <div class="audio-speaker">
+                <img src="1.jpg" class="rollover" alt="Anonymous prankster"
+                    onmouseover="this.src='1.gif'"
+                    onmouseout="this.src='1.jpg'"
+                    onclick="document.getElementById('audio_1').play(); return false;"
+                    ondblclick="document.getElementById('audio_1').pause(); return false;">
+                <p class="audio-label">Anonymous Prankster</p>
+            </div>
+            <div class="audio-speaker">
+                <img src="2.jpg" class="rollover" alt="Anonymous drinker"
+                    onmouseover="this.src='2.gif'"
+                    onmouseout="this.src='2.jpg'"
+                    onclick="document.getElementById('audio_2').play(); return false;"
+                    ondblclick="document.getElementById('audio_2').pause(); return false;">
+                <p class="audio-label">Anonymous Drinker</p>
+            </div>
+            <div class="audio-speaker">
+                <img src="3.jpg" class="rollover" alt="Anonymous sunbather"
+                    onmouseover="this.src='3.gif'"
+                    onmouseout="this.src='3.jpg'"
+                    onclick="document.getElementById('audio_3').play(); return false;"
+                    ondblclick="document.getElementById('audio_3').pause(); return false;">
+                <p class="audio-label">Anonymous Sunbather</p>
+            </div>
+        </div>
+        <p class="audio-instructions">Click an image to play &nbsp;|&nbsp; Double-click to pause</p>
+        <figure class="story-photo">
+            <img src="story-photo.jpg" alt="Cal Poly residence hall buildings and lawn under a clear blue sky">
+            <figcaption>The yakʔitʸutʸu residential community is one of many dorm communities on campus where RAs work and live among their residents.</figcaption>
+        </figure>
+    </section>
+
+    <section id="infographic" class="section">
+        <h2>Timeline</h2>
+        <p class="section-intro">The path to becoming a Cal Poly residential advisor begins months before students move into their assigned communities.</p>
+        <div class="infographic-wrapper">
+            <ol class="timeline-list" aria-label="Timeline for becoming a Cal Poly residential advisor">
+                <li>
+                    <span class="timeline-number">1</span>
+                    <div>
+                        <h3>Eligibility</h3>
+                        <p>Must have a minimum 2.3 GPA and good disciplinary standing.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">2</span>
+                    <div>
+                        <h3>Applying</h3>
+                        <p>Complete the online RA application and answer three written response questions in 350 words or less.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">3</span>
+                    <div>
+                        <h3>Interview Process</h3>
+                        <p>Based on the written application, candidates are called back for two 30-minute interviews in January.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">4</span>
+                    <div>
+                        <h3>Selection &amp; Offer</h3>
+                        <p>In mid-February, applicants are notified of their selection.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">5</span>
+                    <div>
+                        <h3>Training</h3>
+                        <p>If selected, students are assigned mandatory RA training before the Fall Semester.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">6</span>
+                    <div>
+                        <h3>Move Into Housing</h3>
+                        <p>RAs move into their assigned dormitory right before WOW Week.</p>
+                    </div>
+                </li>
+                <li>
+                    <span class="timeline-number">7</span>
+                    <div>
+                        <h3>Begin Your Duties</h3>
+                        <p>RAs begin planning future events, nightly safety checks and building community.</p>
+                    </div>
+                </li>
+            </ol>
+            <p class="timeline-source">Source: Cal Poly Housing</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         PARALLAX DIVIDER
+         - Change the background image in style.css
+         - Look for ".parallax-3"
+         ============================================ -->
+    <div class="parallax-divider parallax-3"></div>
+
+    <!-- ============================================
+         VIDEO SECTION: Embedded video player
+         - Update src to your video file path
+         - Update poster to a thumbnail image
+         ============================================ -->
+    <section id="video" class="section">
+        <h2>Insight</h2>
+        <p class="section-intro">This interview features a former Cal Poly RA reflecting on the pressure and responsibility that came with the role, along with the feeling that the work often went unrecognized. His perspective adds to the story by showing the emotional toll and unseen challenges that residential advisors face.</p>
+        <div class="video-wrapper">
+            <video controls preload="none" poster="Fulton.png">
+                <source src="Confidential-web.m4v?v=2" type="video/mp4">
+                <track src="captions.vtt" kind="captions" srclang="en" label="English" default>
+                Your browser does not support video.
+            </video>
+            <p class="caption">Former residential advisor Fulton Skikos reveals his experience as an RA.</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER: Credits and contact info
+         - Edit your name, date, and email below
+         ============================================ -->
+    <footer id="footer">
+        <p>R.A. Confidential | By Maya Goodwin | May 2026</p>
+        <p><a href="mailto:mgoodw02@calpoly.edu">mgoodw02@calpoly.edu</a></p>
+        <p>&copy; 2026 Maya Goodwin. All rights reserved.</p>
+    </footer>
+
+    <!-- ============================================
+         BACK TO TOP BUTTON
+         - Appears automatically after scrolling down
+         - No changes needed here
+         ============================================ -->
+    <button id="back-to-top" title="Back to top">&#8593; Top</button>
+
+    <script src="script.js"></script>
+</body>
+</html>
